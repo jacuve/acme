@@ -3,12 +3,14 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use app\widgets\Alert;
+//use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\components\LanguageDropdown;
+use yii\bootstrap\Alert;
 
 AppAsset::register($this);
 ?>
@@ -38,11 +40,11 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => Yii::t('app','Home'), 'url' => ['/site/index']],
+            ['label' => Yii::t('app','About'), 'url' => ['/site/about']],
+            ['label' => Yii::t('app','Contact'), 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+                ['label' => Yii::t('app','Login'), 'url' => ['/site/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
@@ -52,7 +54,8 @@ AppAsset::register($this);
                 )
                 . Html::endForm()
                 . '</li>'
-            )
+            ),
+            ['label' => LanguageDropdown::label(Yii::$app->language), 'items' => LanguageDropdown::widget()]
         ],
     ]);
     NavBar::end();
@@ -62,7 +65,14 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <?= Alert::widget() ?>
+
+        <?php
+        if(!empty(Yii::$app->session->getFlash('success')) ) {
+            echo Alert::widget([
+                    'options' => ['class' =>'alert-success alert-dismissible'],
+                    'body' => Yii::$app->session->getFlash('success')
+            ]);
+        }?>
         <?= $content ?>
     </div>
 </div>

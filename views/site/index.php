@@ -3,11 +3,14 @@
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
+
+use app\components\LanguageDropdown;
 ?>
 <div class="site-index">
 
+
     <div class="jumbotron">
-        <h1>Congratulations!!!</h1>
+        <h1><?= Yii::t('app', 'congratulations') ?></h1>
 
         <p class="lead">You have successfully created your Yii-powered application.</p>
 

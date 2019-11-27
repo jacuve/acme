@@ -28,10 +28,16 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => false,
+            'viewPath' => '@app/mail',
+            'transport' =>[
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.gmail.com',
+                'username' => 'jacuve14@gmail.com',
+                'password' =>'1gmail.com14',
+                'port' => '465',
+                'encryption' => 'ssl'
+            ]
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -43,6 +49,26 @@ $config = [
             ],
         ],
         'db' => $db,
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    //'basePath' => '@app/messages',
+                    //'sourceLanguage' => 'en-US',
+                    'fileMap' => [
+                        'app' => 'app.php',
+                    ],
+                ],
+            ],
+        ],
+        // Override the urlManager component
+        'urlManager' => [
+            'class' => 'codemix\localeurls\UrlManager',
+
+            // List all supported languages here
+            // Make sure, you include your app's default language.
+            'languages' => [ 'en',  'de', 'es'],
+        ],
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
