@@ -12,6 +12,22 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'google' => [
+                    'class' => 'yii\authclient\clients\Google',
+                    'clientId' => '770876342632-19kb4p33d82dk9gf7idnpu510a214com.apps.googleusercontent.com',
+                    'clientSecret' => 'paxfEsouF9CTpXq5tKQvrsyC',
+                ],
+                'facebook' => [
+                    'class' => 'yii\authclient\clients\Facebook',
+                    'clientId' => '252322995285494',
+                    'clientSecret' => '3bff322d7fc17275a102e9d4aed8eefd',
+                ],
+                // etc.
+            ],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'r_EM85kZsTSY8QDYc3oWr1DooGjKRNEK',
