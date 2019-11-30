@@ -25,7 +25,14 @@ $config = [
                     'clientId' => '252322995285494',
                     'clientSecret' => '3bff322d7fc17275a102e9d4aed8eefd',
                 ],
-                // etc.
+                'twitter' => [
+                    'class' => 'yii\authclient\clients\Twitter',
+                    'attributeParams' => [
+                        'include_email' => 'true'
+                    ],
+                    'consumerKey' => 'pMQP7AxKwZQRBp2bbI6KpqzFi',
+                    'consumerSecret' => '5YqT8zrIY9RL740LhZFaUFgJz7iWoRtL442W5DaHf10GzonorC',
+                ],
             ],
         ],
         'request' => [
@@ -50,7 +57,7 @@ $config = [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.gmail.com',
                 'username' => 'jacuve14@gmail.com',
-                'password' =>'1gmail.com14',
+                'password' =>'xxxxxx',
                 'port' => '465',
                 'encryption' => 'ssl'
             ]
